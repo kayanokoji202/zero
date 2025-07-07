@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☬ 𝐌.𝐒.𝐑 𝐊𝐈𝐍𝐆𝐃𝐎𝐌 空</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-gold: #FFD700;
+            --dark-gold: #e6c200;
+            --neon-gold: rgba(255, 215, 0, 0.5);
+            --black-bg: #0d0d0d;
+            --dark-bg: #1a1a1a;
+            --darker-bg: #111;
+            --text-light: #f9f9f9;
+            --text-gray: #ccc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--black-bg);
+            color: var(--main-gold);
+            line-height: 1.6;
+        }
+
+        /* نظام الوضع الفاتح */
+        body.light-mode {
+            --black-bg: #f8f9fa;
+            --dark-bg: #e9ecef;
+            --darker-bg: #dee2e6;
+            --text-light: #212529;
+            --text-gray: #495057;
+            --main-gold: #d4af37;
+            --neon-gold: rgba(212, 175, 55, 0.5);
+        }
+
+        /* زر التبديل */
+        .theme-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--main-gold);
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, var(--darker-bg) 60%, var(--dark-bg));
+            border-bottom: 3px solid var(--main-gold);
+            box-shadow: 0 4px 10px var(--neon-gold);
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--main-gold);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 15px auto 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--main-gold);
+            margin: 40px 0 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--main-gold);
+            margin: 10px auto;
+            box-shadow: 0 0 10px var(--neon-gold);
+        }
+
+        .rank-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 10px;
+            align-items: start;
+        }
+
+        .rank-card {
+            background-color: rgba(18, 18, 18, 0.9);
+            border: 2px solid var(--main-gold);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .rank-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .rank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--neon-gold);
+        }
+
+        .rank-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--main-gold);
+            margin-bottom: 15px;
+        }
+
+        .rank-name {
+            font-weight: 700;
+            color: var(--main-gold);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .rank-person {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .rank-desc {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--main-gold);
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px var(--neon-gold);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            background-color: var(--darker-bg);
+            color: var(--text-gray);
+            border-top: 1px solid var(--main-gold);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .rank-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .title {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rank-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 40px 15px;
+            }
+            
+            .rank-image {
+                height: 200px;
+            }
+            
+            .theme-btn {
+                top: 15px;
+                left: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- زر التبديل -->
+    <button id="theme-toggle" class="theme-btn" title="تبديل الوضع">
+        <i class="fas fa-moon"></i>
+    </button>
+
+     <header>
+        <div class="container">
+            <h1 class="title">☬ 𝐌.𝐒.𝐑 𝐊𝐈𝐍𝐆𝐃𝐎𝐌 空</h1>
+            <p class="subtitle">┋♧𝒁𝑬𝑹𝑶♧┋ ╎𝑳𝑬𝑽𝑬𝑳 𝑪 🌟╎</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2 class="section-title">بسم الله الرَّحْمٰنِ الرَّحِيْمِ</h2>
+            <div class="divider">✶━═━═✥━═✧• 𓆩♣️𓆪 •✧═━✥═━═━✶</div>
+            
+            <h3 class="section-title">┋الـرتب الأداريـة الــعــلـيـا 🏮↡┋</h3>
+            <div class="rank-grid">
+                <!-- الإمبراطور -->
+                <div class="rank-card">
+                    <img src="ава наруто.jpg" alt="الامبراطور" class="rank-image">
+                    <h3 class="rank-name">❑╎الامـبـراطـور ┋🌟</h3>
+                    <p class="rank-person">اوبــيـتـو</p>
+                    <p class="rank-desc">المؤسس والمسؤول الأول عن المملكة</p>
+                </div>
+                
+                <!-- نائب الإمبراطور -->
+                <div class="rank-card">
+                    <img src="★.jpg" alt="نائب الامبراطور" class="rank-image">
+                    <h3 class="rank-name">❑╎نـائـب الامـبـراطـور ┋⭐</h3>
+                    <p class="rank-person">هـيـسـوكـا </p>
+                    <p class="rank-desc">المساعد الأول للمؤسس والمسؤول الثاني</p>
+                </div>
+                
+                <!-- الدوق -->
+                <div class="rank-card">
+                    <img src="Eren Jeager Icon.jpg" alt="الدوق" class="rank-image">
+                    <h3 class="rank-name">❑╎الـدوق┋❄️</h3>
+                    <p class="rank-person">ايــريــن</p>
+                    <p class="rank-desc">مسؤول عن مجموعة من النقابات الرئيسية</p>
+                </div>
+                
+                <!-- نائب الدوق -->
+                <div class="rank-card">
+                    <img src="Luffy Gear 5 Icon.jpg" alt="نائب الدوق" class="rank-image">
+                    <h3 class="rank-name">❑╎نـائـب الـدوق ┋𓃵</h3>
+                    <p class="rank-person">لــوفــي</p>
+                    <p class="rank-desc">مساعد الدوق</p>
+                </div>
+            </div>
+            
+            <div class="divider">✶━═━═✥━═✧• 𓆩♣️𓆪 •✧═━✥═━═━✶</div>
+            
+            <h3 class="section-title">┋الـرتب الأداريـة الـخـاصـة🛡️ ↡┋</h3>
+            <div class="rank-grid">
+                <!-- الأدميرال -->
+                <div class="rank-card">
+                    <img src="WhatsApp Image 2025-07-07 at 13.46.04_d685af4b.jpg" alt="الادميرال" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الادمـيـرال┋🎐 </h3>      
+                    <p class="rank-person">مـاكـي</p>
+                    <p class="rank-desc">مسؤول عن النقابة و عن فروعها</p>
+                </div>
+                
+                <!-- نائب الأدميرال -->
+                <div class="rank-card">
+                    <img src="Screenshot 2025-07-07 013032.png" alt="نائب الادميرال" class="rank-image">
+                    <h3 class="rank-name">❍⤶نـائـب الادمـيـرال┋🌪️</h3>
+                    <p class="rank-person"></p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- العميد -->
+                <div class="rank-card">
+                    <img src="Screenshot 2025-07-07 013032.png" alt="العميد" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـعـمـيد┋🧧</h3>
+                    <p class="rank-person"></p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- التشيبوكاي -->
+                <div class="rank-card">
+                    <img src="Screenshot 2025-07-07 013032.png" alt="التشيبوكاي" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـتشـيبوكاي┋💎</h3>
+                    <p class="rank-person"></p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- الفارس -->
+                <div class="rank-card">
+                    <img src="70165259-fb75-4f65-bab3-71c608d73fd8.jpg" alt="الفارس" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـفـارس┋👤</h3>
+                    <p class="rank-person">ايـانـوكـوجـي</p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- الملازم -->
+                <div class="rank-card">
+                    <img src="Jiraya.jpg" alt="الملازم" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـمـلازم┋🐸</h3>
+                    <p class="rank-person">•جـيـرايـا </p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <div class="rank-card">
+                    <img src="Dabi ୨୧.jpg" alt="الملازم" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـمـلازم┋🔥</h3>
+                    <p class="rank-person">دابـي </p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <div class="rank-card">
+                    <img src="Thons.jpg" alt="الملازم" class="rank-image">
+                    <h3 class="rank-name">❍⤶ الـمـلازم┋☄️</h3>
+                    <p class="rank-person"> •ثـورز</p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- حامل بيرق -->
+                <div class="rank-card">
+                    <img src="Screenshot 2025-07-07 013032.png" alt="حامل بيرق" class="rank-image">
+                    <h3 class="rank-name">❍⤶ حـامل بيرق┋🔍</h3>
+                    <p class="rank-person"></p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- حامل راية -->
+                <div class="rank-card">
+                    <img src="9030722b-cdcd-4cb9-85ad-6922dea452d8.jpg" alt="حامل راية" class="rank-image">
+                    <h3 class="rank-name">❍⤶ حـامل راية┋🎭</h3>
+                    <p class="rank-person"> •يـوهان</p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <div class="rank-card">
+                    <img src="⊱ takuan _ vinz.jpg" alt="حامل راية" class="rank-image">
+                    <h3 class="rank-name">❍⤶ حـامل راية┋🏳️</h3>
+                    <p class="rank-person"> سوهو</p>
+                    <p class="rank-desc"></p>
+                </div>
+
+                <div class="rank-card">
+                    <img src="GOL D ROGER.jpg" alt="حامل راية" class="rank-image">
+                    <h3 class="rank-name">❍⤶ حـامل راية┋🏳️</h3>
+                    <p class="rank-person"> روجر</p>
+                    <p class="rank-desc"></p>
+                </div>
+                
+                <!-- المتدربين -->
+                <div class="rank-card">
+                    <img src="Screenshot 2025-07-07 013032.png" alt="المتدربين" class="rank-image">
+                    <h3 class="rank-name">❍⤶ مـتدربين┋🎟️</h3>
+                    <p class="rank-person"></p>
+                    <p class="rank-desc">الأعضاء الجدد تحت التدريب</p>
+                </div>
+            </div>
+            
+            <div class="divider">✶━═━═✥━═✧• 𓆩♣️𓆪 •✧═━✥═━═━✶</div>
+            
+            <h3 class="section-title">الإدارات الخاصة</h3>
+            <div class="rank-grid">
+                <!-- محاسب البنك -->
+                <div class="rank-card">
+                    <img src="70165259-fb75-4f65-bab3-71c608d73fd8.jpg" alt="محاسب البنك" class="rank-image">
+                    <h3 class="rank-name"> ✥محاسب البنك┋👤</h3>
+                    <p class="rank-person">ايانوكوجي 
+                        
+                    </p>
+                    <p class="rank-desc">المسؤول عن الموقع و عن مصاريف المشرفين و الاعضاء</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // نظام التبديل
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        // تحميل التفضيلات
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            icon.className = 'fas fa-sun';
+        }
+        
+        // حدث النقر
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            
+            icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    </script>
+</body>
+</html>
